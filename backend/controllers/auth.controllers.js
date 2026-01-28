@@ -38,7 +38,6 @@ const registerUser = asyncHandler(async (req, res) => {
                 "User created succesfully"
             ))
     } catch (err) {
-        console.log(err)
         throw new APIError(500, "There was a error creating user")
     }
 })
@@ -129,7 +128,6 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         decodedToken = jwt.verify(incommingToken, process.env.REFRESH_TOKEN_SECRET)
         const _id = decodedToken._id
     } catch (err) {
-        console.log(err)
         throw new APIError(400, "Cannot verify Refresh Token")
     }
     const user = await User.findById(decodedToken._id)
@@ -147,7 +145,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .cookie('accessToken', accesTokenOptions)
+        .cookie('accessToken', generatedAccessToken, accesTokenOptions)
         .json(
             new APIResponse(
                 200,
