@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+    <nav class="header-nav">
+        <a href="/">
+            <div class="logo-div">
+                <p class="logo-text">FARM FORTRESS</p>
+            </div>
+        </a>
+        <div class="nav-buttons">
+            <div id="dashboard-header-button">
+                <a href="/dashboard">
+                    <div class="menu-item">
+                        <p>Dashboard</p>
+                    </div>
+                </a>
+            </div>
+            <div id="login-header-button">
+                <a href="/login">
+                    <div class="menu-item highlighted">
+                        <p>Login</p>
+                    </div>
+                </a>
+            </div>
+            <div id="signup-header-button">
+                <a href="/signup">
+                    <div class="menu-item highlighted">
+                        <p>Signup</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="{% block main_classes %}{% endblock main_classes %}">
+    </main>
+
+</body>
+
+</html>
