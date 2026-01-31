@@ -13,23 +13,36 @@ const generateAccessAndRefreshToken = async function (userId) {
         await user.save()
         return { accessToken, refreshToken }
     } catch (error) {
-        APIError(500, "Something went wrong while generating access and refresh token")
+        throw new APIError(500, "Something went wrong while generating access and refresh token")
     }
 }
 
 const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body
+    let user = undefined
+    try{
+        user = await User.create({
+            username: username,
+            email: email,
+            password: password
+        })
+    } catch (err) {
+        if(err.code === 11000){
+            throw new APIError(409,
+                "User alredy exists"
+            )
+        }
+        else{
+            console.log(err)
+        }
+    }
+    if (!user){
+        throw new APIError(500, "There was a error creating user")
 
-    const user = await User.create({
-        username: username,
-        email: email,
-        password: password
-    })
-
+    }
     try {
-        await user.save()
         res
-            .status(200)
+            .status(201)
             .json(new APIResponse(
                 200,
                 {
@@ -52,7 +65,7 @@ const loginUser = asyncHandler(async function (req, res) {
             httpOnly: true,
             secure: true,
             sameSite: "none",
-            path: "/api/auth/refresh-token"
+            path: "/api/auth/refresh"
         }
         const accesTokenOptions = {
             httpOnly: true,
@@ -126,7 +139,6 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     let  decodedToken = undefined
     try {
         decodedToken = jwt.verify(incommingToken, process.env.REFRESH_TOKEN_SECRET)
-        const _id = decodedToken._id
     } catch (err) {
         throw new APIError(400, "Cannot verify Refresh Token")
     }
