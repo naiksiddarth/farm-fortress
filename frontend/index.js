@@ -9,6 +9,9 @@ const static_folder = path.join(__dirname, 'static')
 const app = express()
 app.use(express.static(static_folder))
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(static_folder, "html/landingpage.html"))
+})
 
 app.listen(3000, () => {
     console.log(`Started server on http://localhost:3000`)
