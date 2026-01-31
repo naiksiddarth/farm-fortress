@@ -55,19 +55,31 @@
                     <div class="form-grid">
                         <label class="input-group">
                             Farm location
-                            <input class="input" type="text" placeholder="Village, District, State" />
+                            <input id="farm-location" class="input" type="text" placeholder="Village, District, State" />
                         </label>
                         <label class="input-group">
                             Farm dimensions
-                            <input class="input" type="text" placeholder="Acres / Hectares" />
+                            <input id="farm-size" class="input" type="text" placeholder="Acres / Hectares" />
                         </label>
                         <label class="input-group">
                             Soil type
-                            <input class="input" type="text" placeholder="Loamy, Clay, Sandy..." />
+                            <input id="soil-type" class="input" type="text" placeholder="Loamy, Clay, Sandy..." />
                         </label>
-                        <button class="btn btn-primary" type="button">See sample crops</button>
+                        <button id="sample-crops-btn" class="btn btn-primary" type="button">See sample crops</button>
                     </div>
                 </div>
+            </section>
+
+            <section id="sample-crops" class="section sample-section" aria-live="polite">
+                <div class="sample-header">
+                    <div>
+                        <h2>Sample crop recommendations</h2>
+                        <p class="sample-subtitle">Enter your farm details to preview a tailored crop list.</p>
+                    </div>
+                    <div class="sample-badge" id="sample-badge">Preview</div>
+                </div>
+                <div class="sample-summary" id="sample-summary">Fill in your farm details and click “See sample crops.”</div>
+                <div class="sample-grid" id="sample-grid"></div>
             </section>
 
             <section id="features" class="section">
@@ -159,6 +171,79 @@
             <div>© 2026 Farm Fortress. All rights reserved.</div>
         </footer>
     </div>
+
+    <script>
+        const sampleButton = document.getElementById("sample-crops-btn");
+        const sampleGrid = document.getElementById("sample-grid");
+        const sampleSummary = document.getElementById("sample-summary");
+        const sampleBadge = document.getElementById("sample-badge");
+
+        const cropLibrary = {
+            loamy: [
+                { name: "Sugarcane", note: "High yield, long cycle", window: "Planting: Feb–Apr" },
+                { name: "Wheat", note: "Stable returns", window: "Planting: Nov–Dec" },
+                { name: "Vegetables", note: "Fast turnover", window: "Planting: Year-round" }
+            ],
+            clay: [
+                { name: "Rice", note: "Thrives in water-rich soil", window: "Planting: Jun–Jul" },
+                { name: "Paddy", note: "Reliable monsoon crop", window: "Planting: Jun–Jul" },
+                { name: "Soybean", note: "Nitrogen-fixing", window: "Planting: Jun–Jul" }
+            ],
+            sandy: [
+                { name: "Groundnut", note: "Low water requirement", window: "Planting: Jun–Jul" },
+                { name: "Millet", note: "Drought tolerant", window: "Planting: Jun–Aug" },
+                { name: "Watermelon", note: "Quick cash crop", window: "Planting: Jan–Mar" }
+            ],
+            default: [
+                { name: "Maize", note: "Versatile and resilient", window: "Planting: Jun–Jul" },
+                { name: "Cotton", note: "High market demand", window: "Planting: Jun–Jul" },
+                { name: "Onion", note: "Strong local demand", window: "Planting: Oct–Nov" }
+            ]
+        };
+
+        const getCropsForSoil = (soilValue) => {
+            if (!soilValue) return cropLibrary.default;
+            const key = soilValue.toLowerCase().trim();
+            if (key.includes("loam")) return cropLibrary.loamy;
+            if (key.includes("clay")) return cropLibrary.clay;
+            if (key.includes("sand")) return cropLibrary.sandy;
+            return cropLibrary.default;
+        };
+
+        const renderCrops = (crops) => {
+            sampleGrid.innerHTML = crops
+                .map(
+                    (crop) => `
+          <div class="sample-card">
+            <h4>${crop.name}</h4>
+            <p>${crop.note}</p>
+            <span>${crop.window}</span>
+          </div>`
+                )
+                .join("");
+        };
+
+        sampleButton.addEventListener("click", () => {
+            const location = document.getElementById("farm-location").value.trim();
+            const size = document.getElementById("farm-size").value.trim();
+            const soil = document.getElementById("soil-type").value.trim();
+
+            const crops = getCropsForSoil(soil);
+            renderCrops(crops);
+
+            const summaryParts = [];
+            if (location) summaryParts.push(`Location: ${location}`);
+            if (size) summaryParts.push(`Size: ${size}`);
+            if (soil) summaryParts.push(`Soil: ${soil}`);
+
+            sampleSummary.textContent = summaryParts.length
+                ? `Based on your inputs — ${summaryParts.join(" • ")}`
+                : "Showing popular crops for mixed soil profiles.";
+
+            sampleBadge.textContent = soil ? "Matched" : "Preview";
+            document.getElementById("sample-crops").scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
 </body>
 
 </html>
