@@ -1,12 +1,82 @@
-<link rel="stylesheet" href="/css/login.css">
-<div class="login-card">
-    <h2 class="login-heading" >Login</h2>
-    <form action="" class="login-form">
+<!DOCTYPE html>
+<html lang="en">
 
-        <input type="email" name="email" id="email" class="form-feild form-element" placeholder="Email">
-        <input type="password" name="" id="password" class="form-feild form-element " placeholder="Password">
-        <button type="submit" class="form-element submit-button">Login</button>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Farm Fortress — Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
 
-    </form>
-    <a href="{{ url_for('signup') }}" class="signup-link">Dont have an account? Signup</a>
-</div>
+<body>
+    <div class="page">
+        <header class="nav">
+            <a class="logo" href="landingpage.html">
+                <div class="logo-mark">FF</div>
+                <div>
+                    Farm Fortress<br />
+                    <small class="logo-subtitle">Smart crop guidance</small>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="landingpage.html#features">Features</a>
+                <a href="landingpage.html#how">How it works</a>
+                <a href="landingpage.html#insights">Insights</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="btn btn-outline" href="landingpage.html">Back to home</a>
+            </div>
+        </header>
+
+        <main class="login-body">
+            <section class="login-card">
+                <div class="login-header">
+                    <h2 class="login-heading">Welcome back</h2>
+                    <p class="login-subtitle">Log in to view your farm recommendations.</p>
+                </div>
+                <form action="" class="login-form">
+                    <label class="input-group" for="email">
+                        Email
+                        <input type="email" name="email" id="email" class="input" placeholder="email@example.com"
+                            required>
+                    </label>
+                    <label class="input-group" for="password">
+                        Password
+                        <input type="password" name="password" id="password" class="input" placeholder="••••••••"
+                            required>
+                    </label>
+                    <div class="form-row">
+                        <label class="checkbox">
+                            <input type="checkbox" />
+                            Remember me
+                        </label>
+                        <a class="text-link" href="signup.html">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </form>
+                <div class="login-footer">
+                    <span>New to Farm Fortress?</span>
+                    <a class="text-link" href="signup.html">Create an account</a>
+                </div>
+            </section>
+            <aside class="login-panel">
+                <h3>Your farm insights await</h3>
+                <p>
+                    Access soil-aware crop picks, yield forecasts, and seasonal checklists tailored to
+                    your location.
+                </p>
+                <div class="pill-list">
+                    <div class="pill">Location intelligence</div>
+                    <div class="pill">Yield projections</div>
+                    <div class="pill">Seasonal actions</div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div>© 2026 Farm Fortress. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+
+</html>

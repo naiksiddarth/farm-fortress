@@ -1,18 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="/css/signup.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Farm Fortress — Sign Up</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
 
-<div class="signup-card">
-    <h2 class="signup-heading">Signup</h2>
-    <form action="" class="signup-form">
+<body>
+    <div class="page">
+        <header class="nav">
+            <a class="logo" href="landingpage.html">
+                <div class="logo-mark">FF</div>
+                <div>
+                    Farm Fortress<br />
+                    <small class="logo-subtitle">Smart crop guidance</small>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="landingpage.html#features">Features</a>
+                <a href="landingpage.html#how">How it works</a>
+                <a href="landingpage.html#insights">Insights</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="btn btn-outline" href="landingpage.html">Back to home</a>
+            </div>
+        </header>
 
-        <input type="text" name="username" id="username" class="form-field form-element" placeholder="Username" required>
-        <input type="email" name="email" id="email" class="form-field form-element" placeholder="Email" required>
-        <input type="password" name="password" id="password" class="form-field form-element " placeholder="Password"
-            required>
-        <input type="password" name="confirm_password" id="confirm_password" class="form-field form-element "
-            placeholder="Confirm Password" required>
-        <button type="submit" class="form-element submit-button">Signup</button>
+        <main class="signup-body">
+            <section class="signup-card">
+                <div class="signup-header">
+                    <h2 class="signup-heading">Create your account</h2>
+                    <p class="signup-subtitle">Start building your farm profile in minutes.</p>
+                </div>
+                <form  class="signup-form">
+                    <label class="input-group" for="username">
+                        Full name
+                        <input type="text" name="username" id="username" class="input" placeholder="Darshan Thoogudeepa"
+                            required>
+                    </label>
+                    <label class="input-group" for="email">
+                        Email
+                        <input type="email" name="email" id="email" class="input" placeholder="darshan@example.com"
+                            required>
+                    </label>
+                    <label class="input-group" for="password">
+                        Password
+                        <input type="password" name="password" id="password" class="input"
+                            placeholder="Create a password" required>
+                    </label>
+                    <label class="input-group" for="confirm_password">
+                        Confirm password
+                        <input type="password" name="confirm_password" id="confirm_password" class="input"
+                            placeholder="Re-enter password" required>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Create account</button>
+                </form>
+                <div class="signup-footer">
+                    <span>Already have an account?</span>
+                    <a class="text-link" href="login.html">Log in</a>
+                </div>
+            </section>
+            <aside class="signup-panel">
+                <h3>What you get with Farm Fortress</h3>
+                <p>
+                    Save your farm details, compare crop options, and receive seasonal alerts tailored
+                    to your region.
+                </p>
+                <div class="pill-list">
+                    <div class="pill">Soil-aware picks</div>
+                    <div class="pill">Yield forecasts</div>
+                    <div class="pill">Weather alerts</div>
+                </div>
+            </aside>
+        </main>
 
-    </form>
-    <a href="/login" class="login-link">Already have an account? Login</a>
-</div>
+        <footer class="footer">
+            <div>© 2026 Farm Fortress. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>
