@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    localStorage.setItem("isLoggedIn", false)
 
     const emailField = document.getElementById("email")
     const passwordField = document.getElementById("password")
     const loginForm = document.querySelector(".login-form")
-
+    const errorMsg = document.getElementById("invalid_credentials_error")
     loginForm.addEventListener("submit", async function (event) {
         event.preventDefault()
         const email = emailField.value
@@ -23,9 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify(formData)
         })
         if(response.ok){
-            localStorage.setItem("isLoggedIn", true)
-            renderLoginLogout()
-            window.location.assign("/issues")
+            window.location.assign("/dashboard")
+        }
+        else if(response.status === 401){
+            errorMsg.classList.remove("hidden")
+            emailField.classList.add("invalid_input")
+            passwordField.classList.add("invalid_input")
         }
     })
 })

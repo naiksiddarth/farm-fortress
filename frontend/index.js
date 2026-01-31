@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(static_folder, "html/landingpage.html"))
 })
 
+app.get("/dashboard", (req, res) => {
+    res.sendFile(path.join(static_folder, "html/dashboard.html"))
+})
+
 app.listen(3000, () => {
     console.log(`Started server on http://localhost:3000`)
 })

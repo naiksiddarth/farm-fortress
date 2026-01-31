@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Farm Fortress — Login</title>
     <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js"></script>
 </head>
 
 <body>
@@ -45,6 +46,9 @@
                         <input type="password" name="password" id="password" class="input" placeholder="••••••••"
                             required>
                     </label>
+                    <div class ="invalid_credentials hidden" id="invalid_credentials_error">
+                        Invalid Email or Password
+                    </div>
                     <div class="form-row">
                         <label class="checkbox">
                             <input type="checkbox" />
