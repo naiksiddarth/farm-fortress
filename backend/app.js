@@ -3,6 +3,7 @@ import cors from "cors"
 import healthCheckRouter from "./routes/healthcheck.routes.js"
 import authRouter from "./routes/auth.routes.js"
 import cookieParser from "cookie-parser"
+import farmRouter from "./routes/farm.routes.js"
 
 const app = express()
 
@@ -19,5 +20,6 @@ app.use(
 
 app.use("/api/healthcheck", healthCheckRouter)
 app.use("/api/auth", authRouter)
+app.use("/api/farm", farmRouter)
 
 export default app
