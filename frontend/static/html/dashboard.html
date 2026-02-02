@@ -1,297 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Farm Dashboard — Farm Fortress</title>
     <link rel="stylesheet" href="/css/dashboard.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <header class="header">
-      <div class="header-content container">
-        <div class="logo">
-          <div class="logo-mark">FF</div>
-          <div>Farm Fortress</div>
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-mark">FF</div>
+                <div>Farm Fortress</div>
+            </div>
+            <div class="user-menu">
+                <span id="welcome-text">Welcome, Farmer!</span>
+                <button class="btn btn-secondary">Settings</button>
+                <button class="btn btn-secondary" onclick="window.location.assign('/logout')">Logout</button>
+            </div>
         </div>
-        <div class="user-menu">
-          <span>Welcome, Farmer!</span>
-          <button class="btn btn-secondary">Settings</button>
-          <button class="btn btn-secondary">Logout</button>
-        </div>
-      </div>
     </header>
-    <!-- dashboard -->
-    <main class="dashboard container">
-      <!-- alert Banner -->
-      <div class="alert alert-info">
+    <main class="dashboard container" id="dashboard-content">
+        <!-- Loading state -->
+        <div id="loading-state" style="text-align: center; padding: 60px 20px;">
+            <h2>Loading your farm data...</h2>
+            <p style="color: var(--muted);">Fetching real-time information from the backend</p>
+        </div>
+    </main>
+
+    <!-- Error modal -->
+    <div id="error-modal"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 100;">
+        <div style="background: white; padding: 32px; border-radius: 12px; text-align: center; max-width: 400px;">
+            <h2>Backend Connection Failed</h2>
+            <p style="color: var(--muted); margin: 16px 0;">Unable to load your farm data. Please ensure the backend
+                server is
+                running.</p>
+            <button class="btn btn-primary" onclick="location.reload()">Retry</button>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+    <!-- alert Banner -->
+    <!-- <div class="alert alert-info">
         <div class="icon">ℹ️</div>
         <div>
-          <strong>Monsoon season approaching!</strong> Update your irrigation plan and consider
-          water-resistant crops. <a href="#"> View recommendations →</a>
+            <strong>Monsoon season approaching!</strong> Update your irrigation plan and consider
+            water-resistant crops. <a href="#"> View recommendations →</a>
         </div>
-      </div>
+    </div>
 
-      <!-- farm profile and  Stats -->
-      <div class="dashboard-grid">
-        <!-- farm porfile card -->
+
+    <div class="dashboard-grid">
         <div class="card">
-          <div class="card-header">
-            <div class="icon">🌾</div>
-            <h3>Farm Profile</h3>
-          </div>
-          <div class="farm-info">
-            <div class="info-item">
-              <span class="info-label">Location</span>
-              <span class="info-value">Pune, Maharashtra</span>
+            <div class="card-header">
+                <div class="icon">🌾</div>
+                <h3>Farm Profile</h3>
             </div>
-            <div class="info-item">
-              <span class="info-label">Farm Size</span>
-              <span class="info-value">5 acres</span>
+            <div class="farm-info">
+                <div class="info-item">
+                    <span class="info-label">Location</span>
+                    <span class="info-value">Pune, Maharashtra</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Farm Size</span>
+                    <span class="info-value">5 acres</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Soil Type</span>
+                    <span class="info-value">Loamy</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Water Access</span>
+                    <span class="info-value">Borewell</span>
+                </div>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
+                    Edit Profile
+                </button>
             </div>
-            <div class="info-item">
-              <span class="info-label">Soil Type</span>
-              <span class="info-value">Loamy</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Water Access</span>
-              <span class="info-value">Borewell</span>
-            </div>
-            <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
-              Edit Profile
-            </button>
-          </div>
         </div>
 
-        <!-- quick Stats -->
         <div class="card">
-          <div class="card-header">
-            <div class="icon">📊</div>
-            <h3>Quick Stats</h3>
-          </div>
-          <div class="stats-grid">
-            <div class="stat-box">
-              <p class="stat-value">₹45K</p>
-              <p class="stat-label">Est. Revenue</p>
+            <div class="card-header">
+                <div class="icon">📊</div>
+                <h3>Quick Stats</h3>
             </div>
-            <div class="stat-box">
-              <p class="stat-value">7.2t</p>
-              <p class="stat-label">Expected Yield</p>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <p class="stat-value">₹45K</p>
+                    <p class="stat-label">Est. Revenue</p>
+                </div>
+                <div class="stat-box">
+                    <p class="stat-value">7.2t</p>
+                    <p class="stat-label">Expected Yield</p>
+                </div>
+                <div class="stat-box">
+                    <p class="stat-value">78%</p>
+                    <p class="stat-label">Soil Health</p>
+                </div>
+                <div class="stat-box">
+                    <p class="stat-value">4.2L</p>
+                    <p class="stat-label">Water (liters)</p>
+                </div>
             </div>
-            <div class="stat-box">
-              <p class="stat-value">78%</p>
-              <p class="stat-label">Soil Health</p>
-            </div>
-            <div class="stat-box">
-              <p class="stat-value">4.2L</p>
-              <p class="stat-label">Water (liters)</p>
-            </div>
-          </div>
         </div>
 
-        <!-- Current Weather -->
         <div class="card">
-          <div class="card-header">
-            <div class="icon">🌤️</div>
-            <h3>Today's Weather</h3>
-          </div>
-          <div class="weather-main">
-            <div class="weather-icon">☀️</div>
-            <div>
-              <div class="weather-temp">28°C</div>
-              <div class="weather-desc">Partly Cloudy</div>
+            <div class="card-header">
+                <div class="icon">🌤️</div>
+                <h3>Today's Weather</h3>
             </div>
-          </div>
-          <div class="weather-details">
-            <div class="weather-item">
-              <div class="weather-item-label">Humidity</div>
-              <div class="weather-item-value">62%</div>
+            <div class="weather-main">
+                <div class="weather-icon">☀️</div>
+                <div>
+                    <div class="weather-temp">28°C</div>
+                    <div class="weather-desc">Partly Cloudy</div>
+                </div>
             </div>
-            <div class="weather-item">
-              <div class="weather-item-label">Wind</div>
-              <div class="weather-item-value">12 km/h</div>
+            <div class="weather-details">
+                <div class="weather-item">
+                    <div class="weather-item-label">Humidity</div>
+                    <div class="weather-item-value">62%</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-label">Wind</div>
+                    <div class="weather-item-value">12 km/h</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-label">Rain</div>
+                    <div class="weather-item-value">15mm</div>
+                </div>
+                <div class="weather-item">
+                    <div class="weather-item-label">UV Index</div>
+                    <div class="weather-item-value">6/10</div>
+                </div>
             </div>
-            <div class="weather-item">
-              <div class="weather-item-label">Rain</div>
-              <div class="weather-item-value">15mm</div>
-            </div>
-            <div class="weather-item">
-              <div class="weather-item-label">UV Index</div>
-              <div class="weather-item-value">6/10</div>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <!-- Recommended Crop -->
-      <div class="section">
+    <div class="section">
         <div class="card-header">
-          <div class="icon">🌽</div>
-          <h2>Your Top Crop Recommendations</h2>
+            <div class="icon">🌽</div>
+            <h2>Your Top Crop Recommendations</h2>
         </div>
         <div class="crops-list">
-          <div class="crop-card">
-            <p class="crop-name">Sugar Cane</p>
-            <div class="crop-meta">
-              <span>💰 ₹2.8L expected revenue</span>
-              <span>⏱️ 12-14 months</span>
-              <span class="crop-badge">BEST FIT</span>
+            <div class="crop-card">
+                <p class="crop-name">Sugar Cane</p>
+                <div class="crop-meta">
+                    <span>💰 ₹2.8L expected revenue</span>
+                    <span>⏱️ 12-14 months</span>
+                    <span class="crop-badge">BEST FIT</span>
+                </div>
             </div>
-          </div>
-          <div class="crop-card">
-            <p class="crop-name">Jowar (Sorghum)</p>
-            <div class="crop-meta">
-              <span>💰 ₹1.2L expected revenue</span>
-              <span>⏱️ 5-6 months</span>
-              <span class="crop-badge" style="background: var(--info);">HIGH POTENTIAL</span>
+            <div class="crop-card">
+                <p class="crop-name">Jowar (Sorghum)</p>
+                <div class="crop-meta">
+                    <span>💰 ₹1.2L expected revenue</span>
+                    <span>⏱️ 5-6 months</span>
+                    <span class="crop-badge" style="background: var(--info);">HIGH POTENTIAL</span>
+                </div>
             </div>
-          </div>
-          <div class="crop-card">
-            <p class="crop-name">Cotton</p>
-            <div class="crop-meta">
-              <span>💰 ₹1.5L expected revenue</span>
-              <span>⏱️ 7-8 months</span>
-              <span class="crop-badge" style="background: var(--warning);">GOOD OPTION</span>
+            <div class="crop-card">
+                <p class="crop-name">Cotton</p>
+                <div class="crop-meta">
+                    <span>💰 ₹1.5L expected revenue</span>
+                    <span>⏱️ 7-8 months</span>
+                    <span class="crop-badge" style="background: var(--warning);">GOOD OPTION</span>
+                </div>
             </div>
-          </div>
-          <div class="crop-card">
-            <p class="crop-name">Onion</p>
-            <div class="crop-meta">
-              <span>💰 ₹95K expected revenue</span>
-              <span>⏱️ 5-6 months</span>
+            <div class="crop-card">
+                <p class="crop-name">Onion</p>
+                <div class="crop-meta">
+                    <span>💰 ₹95K expected revenue</span>
+                    <span>⏱️ 5-6 months</span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <!-- Seasonal Planting Calendar -->
-      <div class="section">
+
+    <div class="section">
         <div class="card-header">
-          <div class="icon">📅</div>
-          <h2>Seasonal Planting Calendar (Sugar Cane)</h2>
+            <div class="icon">📅</div>
+            <h2>Seasonal Planting Calendar (Sugar Cane)</h2>
         </div>
         <div class="calendar">
-          <div class="month-row">
-            <div class="month-name">January</div>
-            <div class="task-timeline">
-              <div class="timeline-dot completed">✓</div>
-              <div class="timeline-dot completed">✓</div>
-              <div class="timeline-dot">–</div>
-              <div class="timeline-dot">–</div>
+            <div class="month-row">
+                <div class="month-name">January</div>
+                <div class="task-timeline">
+                    <div class="timeline-dot completed">✓</div>
+                    <div class="timeline-dot completed">✓</div>
+                    <div class="timeline-dot">–</div>
+                    <div class="timeline-dot">–</div>
+                </div>
+                <span style="color: var(--muted); font-size: 0.85rem;">Soil prep & Planting</span>
             </div>
-            <span style="color: var(--muted); font-size: 0.85rem;">Soil prep & Planting</span>
-          </div>
-          <div class="month-row">
-            <div class="month-name">Feb–May</div>
-            <div class="task-timeline">
-              <div class="timeline-dot active">🌱</div>
-              <div class="timeline-dot active">🌱</div>
-              <div class="timeline-dot active">🌱</div>
-              <div class="timeline-dot active">🌱</div>
+            <div class="month-row">
+                <div class="month-name">Feb–May</div>
+                <div class="task-timeline">
+                    <div class="timeline-dot active">🌱</div>
+                    <div class="timeline-dot active">🌱</div>
+                    <div class="timeline-dot active">🌱</div>
+                    <div class="timeline-dot active">🌱</div>
+                </div>
+                <span style="color: var(--muted); font-size: 0.85rem;">Growth & Irrigation</span>
             </div>
-            <span style="color: var(--muted); font-size: 0.85rem;">Growth & Irrigation</span>
-          </div>
-          <div class="month-row">
-            <div class="month-name">Jun–Dec</div>
-            <div class="task-timeline">
-              <div class="timeline-dot">–</div>
-              <div class="timeline-dot">–</div>
-              <div class="timeline-dot">–</div>
-              <div class="timeline-dot">–</div>
+            <div class="month-row">
+                <div class="month-name">Jun–Dec</div>
+                <div class="task-timeline">
+                    <div class="timeline-dot">–</div>
+                    <div class="timeline-dot">–</div>
+                    <div class="timeline-dot">–</div>
+                    <div class="timeline-dot">–</div>
+                </div>
+                <span style="color: var(--muted); font-size: 0.85rem;">Maintenance & Harvest prep</span>
             </div>
-            <span style="color: var(--muted); font-size: 0.85rem;">Maintenance & Harvest prep</span>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <!-- tasks & reminders -->
-      <div class="section">
+    <div class="section">
         <div class="card-header">
-          <div class="icon">✓</div>
-          <h2>Farm Tasks & Reminders</h2>
+            <div class="icon">✓</div>
+            <h2>Farm Tasks & Reminders</h2>
         </div>
         <div class="tasks-list">
-          <div class="task-item">
-            <input type="checkbox" class="task-checkbox" />
-            <div class="task-content">
-              <h4>Soil Testing</h4>
-              <p>Get soil nutrient analysis before planting season.</p>
-              <span class="task-priority priority-high">HIGH PRIORITY</span>
+            <div class="task-item">
+                <input type="checkbox" class="task-checkbox" />
+                <div class="task-content">
+                    <h4>Soil Testing</h4>
+                    <p>Get soil nutrient analysis before planting season.</p>
+                    <span class="task-priority priority-high">HIGH PRIORITY</span>
+                </div>
             </div>
-          </div>
-          <div class="task-item">
-            <input type="checkbox" class="task-checkbox" checked />
-            <div class="task-content">
-              <h4>Order Seeds</h4>
-              <p>Purchase certified sugar cane seeds from approved vendor.</p>
-              <span class="task-priority priority-medium">DUE SOON</span>
+            <div class="task-item">
+                <input type="checkbox" class="task-checkbox" checked />
+                <div class="task-content">
+                    <h4>Order Seeds</h4>
+                    <p>Purchase certified sugar cane seeds from approved vendor.</p>
+                    <span class="task-priority priority-medium">DUE SOON</span>
+                </div>
             </div>
-          </div>
-          <div class="task-item">
-            <input type="checkbox" class="task-checkbox" />
-            <div class="task-content">
-              <h4>Schedule Irrigation</h4>
-              <p>Set up drip irrigation system (2-3 weeks before planting).</p>
-              <span class="task-priority priority-medium">DUE SOON</span>
+            <div class="task-item">
+                <input type="checkbox" class="task-checkbox" />
+                <div class="task-content">
+                    <h4>Schedule Irrigation</h4>
+                    <p>Set up drip irrigation system (2-3 weeks before planting).</p>
+                    <span class="task-priority priority-medium">DUE SOON</span>
+                </div>
             </div>
-          </div>
-          <div class="task-item">
-            <input type="checkbox" class="task-checkbox" />
-            <div class="task-content">
-              <h4>Arrange Labor</h4>
-              <p>Confirm farmworkers and equipment for planting season.</p>
-              <span class="task-priority priority-low">LOW PRIORITY</span>
+            <div class="task-item">
+                <input type="checkbox" class="task-checkbox" />
+                <div class="task-content">
+                    <h4>Arrange Labor</h4>
+                    <p>Confirm farmworkers and equipment for planting season.</p>
+                    <span class="task-priority priority-low">LOW PRIORITY</span>
+                </div>
             </div>
-          </div>
-          <div class="task-item">
-            <input type="checkbox" class="task-checkbox" />
-            <div class="task-content">
-              <h4>Fertilizer Planning</h4>
-              <p>Order fertilizers based on soil test results.</p>
-              <span class="task-priority priority-medium">DUE SOON</span>
+            <div class="task-item">
+                <input type="checkbox" class="task-checkbox" />
+                <div class="task-content">
+                    <h4>Fertilizer Planning</h4>
+                    <p>Order fertilizers based on soil test results.</p>
+                    <span class="task-priority priority-medium">DUE SOON</span>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <!-- 7-Day Forecast -->
-      <div class="section">
+    <div class="section">
         <div class="card-header">
-          <div class="icon">📈</div>
-          <h2>7-Day Weather Forecast</h2>
+            <div class="icon">📈</div>
+            <h2>7-Day Weather Forecast</h2>
         </div>
         <div class="dashboard-grid">
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-            <strong>Today</strong>
-            <p style="color: var(--muted); margin: 4px 0;">28°C | Sunny</p>
-          </div>
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">⛅</div>
-            <strong>Tomorrow</strong>
-            <p style="color: var(--muted); margin: 4px 0;">26°C | Cloudy</p>
-          </div>
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">🌧️</div>
-            <strong>Day 3</strong>
-            <p style="color: var(--muted); margin: 4px 0;">22°C | Rainy</p>
-          </div>
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">🌦️</div>
-            <strong>Day 4</strong>
-            <p style="color: var(--muted); margin: 4px 0;">24°C | Partly Cloudy</p>
-          </div>
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-            <strong>Day 5</strong>
-            <p style="color: var(--muted); margin: 4px 0;">27°C | Sunny</p>
-          </div>
-          <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-            <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-            <strong>Day 6</strong>
-            <p style="color: var(--muted); margin: 4px 0;">29°C | Sunny</p>
-          </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                <strong>Today</strong>
+                <p style="color: var(--muted); margin: 4px 0;">28°C | Sunny</p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">⛅</div>
+                <strong>Tomorrow</strong>
+                <p style="color: var(--muted); margin: 4px 0;">26°C | Cloudy</p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🌧️</div>
+                <strong>Day 3</strong>
+                <p style="color: var(--muted); margin: 4px 0;">22°C | Rainy</p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🌦️</div>
+                <strong>Day 4</strong>
+                <p style="color: var(--muted); margin: 4px 0;">24°C | Partly Cloudy</p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                <strong>Day 5</strong>
+                <p style="color: var(--muted); margin: 4px 0;">27°C | Sunny</p>
+            </div>
+            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                <strong>Day 6</strong>
+                <p style="color: var(--muted); margin: 4px 0;">29°C | Sunny</p>
+            </div>
         </div>
-      </div>
+    </div>
     </main>
-  </body>
+</body> -->
+
 </html>
