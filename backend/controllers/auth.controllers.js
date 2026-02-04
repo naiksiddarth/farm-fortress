@@ -63,14 +63,14 @@ const loginUser = asyncHandler(async function (req, res) {
         const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id)
         const refreshTokenOptions = {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: false,
+            sameSite: "lax",
             path: "/api/auth/refresh"
         }
         const accesTokenOptions = {
             httpOnly: true,
-            secure: true,
-            sameSite: "none"
+            secure: false,
+            sameSite: "lax"
         }
         return res
             .status(200)

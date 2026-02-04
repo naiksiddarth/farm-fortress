@@ -18,7 +18,7 @@ export const createFarm = asyncHandler(async (req, res) => {           //protect
     res.status(201).json(farm)
 })
 
-export const getFarm = asyncHandler(async (req, res) => {
+export const getFarm = asyncHandler(async (req, res) => {           //protected
     const user = req.user
     const farm = await Farm.findOne({ ownedBy: user._id })
     res
