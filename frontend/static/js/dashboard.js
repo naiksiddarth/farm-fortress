@@ -13,16 +13,15 @@ async function fetchData() {
         const response = await fetch(`${BACKEND_URL}/farm`, {
             credentials: "include"
         })
-        
-        if (response.status === 401) {
-            errorModal.children[0].children[0].innerHTML = "Unauthorized"
-            errorModal.children[0].children[1].innerHTML = "Please login or signup before accessing this page"
-            errorModal.children[0].children[2].textContent = "Login"
-            errorModal.children[0].children[2].onclick = () => window.location.assign("/login")
-
-            return null
-        }
-        else {
+        if(!response.ok){
+            if (response.status === 401) {
+                errorModal.children[0].children[0].innerHTML = "Unauthorized"
+                errorModal.children[0].children[1].innerHTML = "Please login or signup before accessing this page"
+                errorModal.children[0].children[2].textContent = "Login"
+                errorModal.children[0].children[2].onclick = () => window.location.assign("/login")
+                
+                return null
+            }
 
         }
         errorModal.style.display = "none"
