@@ -26,6 +26,10 @@ app.get("/login", (req, res) => {
     res.sendFile(path.join(static_folder, "html/login.html"))
 })
 
+app.get("/logout", (req, res) => {
+    res.sendFile(path.join(static_folder, "html/logout.html"))
+})
+
 app.get("/signup", (req, res) => {
     res.sendFile(path.join(static_folder, "html/signup.html"))
 })
