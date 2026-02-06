@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         })
     if(response.ok){
-        localStorage.setItem("isLoggedIn", false)
         window.location.replace("/login")
     }
 }) 
