@@ -5,8 +5,17 @@ const errorModal = document.getElementById("error-modal")
 const loadingScreen = document.getElementById("loading-state")
 
 const initDashboard = async function () {
-    const farmProfileDOM = document.getElementById("farm-profile")
-    validateData()
+    let [response, data] = await validateData()
+    data = data.data
+    console.log(data)
+    const location = document.getElementById("location")
+    const size = document.getElementById("size")
+    const soilType = document.getElementById("soilType")
+    const waterSource = document.getElementById("waterSource")
+    location.textContent = data.farm.location
+    size.textContent = `${data.farm.size} ${data.enum[data.farm.sizeUnit]}`
+    soilType.textContent = data.enum[data.farm.soilType]
+    waterSource.textContent = data.farm.waterSource
 }
 
 async function fetchData() {
@@ -40,6 +49,7 @@ async function validateData() {
         return [response, data]
     } catch (error) {
         console.error("Fetch error:", error)
+        errorModal.style.display = "flex"
         return null
     }
 }
