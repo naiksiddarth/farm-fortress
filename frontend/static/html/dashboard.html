@@ -22,14 +22,263 @@
             </div>
         </div>
     </header>
-    <main class="dashboard container" id="dashboard-content">
-        <!-- Loading state -->
-        <div id="loading-state" style="text-align: center; padding: 60px 20px;">
-            <h2>Loading your farm data...</h2>
-            <p style="color: var(--muted);">Fetching real-time information from the backend</p>
+    <main class="dashboard container" id="dashboard-content" style="display: none;">
+        <div class="dashboard-grid">
+            <div class="card" id="farmDetails">
+                <div class="card-header">
+                    <div class="icon">🌾</div>
+                    <h3>Farm Profile</h3>
+                </div>
+                <div class="farm-info" id="farm-profile">
+                    <div class="info-item">
+                        <span class="info-label">Location</span>
+                        <span class="info-value" id="location"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Farm Size</span>
+                        <span class="info-value" id="size"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Soil Type</span>
+                        <span class="info-value" id="soilType"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Water Access</span>
+                        <span class="info-value" id="waterSource"></span>
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;" id="editFarm">
+                        Edit Farm
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon">🌤️</div>
+                    <h3>Today's Weather</h3>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon">☀️</div>
+                    <div>
+                        <div class="weather-temp" id="weatherTemp"></div>
+                        <div class="weather-desc" id="weatherDesc"></div>
+                    </div>
+                </div>
+                <div class="weather-details">
+                    <div class="weather-item">
+                        <div class="weather-item-label">Humidity</div>
+                        <div class="weather-item-value" id="humidity"></div>
+                    </div>
+                    <div class="weather-item">
+                        <div class="weather-item-label">Wind</div>
+                        <div class="weather-item-value" id="wind"></div>
+                    </div>
+                    <div class="weather-item">
+                        <div class="weather-item-label">Rain</div>
+                        <div class="weather-item-value" id="rain"></div>
+                    </div>
+                    <div class="weather-item">
+                        <div class="weather-item-label">UV Index</div>
+                        <div class="weather-item-value" id="uvindex"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="card-header">
+                <div class="icon">🌽</div>
+                <h2>Your Top Crop Recommendations</h2>
+            </div>
+            <div class="crops-list">
+                <div class="crop-card">
+                    <p class="crop-name">Sugar Cane</p>
+                    <div class="crop-meta">
+                        <span>💰 ₹2.8L expected revenue</span>
+                        <span>⏱️ 12-14 months</span>
+                        <span class="crop-badge">BEST FIT</span>
+                    </div>
+                </div>
+                <div class="crop-card">
+                    <p class="crop-name">Jowar (Sorghum)</p>
+                    <div class="crop-meta">
+                        <span>💰 ₹1.2L expected revenue</span>
+                        <span>⏱️ 5-6 months</span>
+                        <span class="crop-badge" style="background: var(--info);">HIGH POTENTIAL</span>
+                    </div>
+                </div>
+                <div class="crop-card">
+                    <p class="crop-name">Cotton</p>
+                    <div class="crop-meta">
+                        <span>💰 ₹1.5L expected revenue</span>
+                        <span>⏱️ 7-8 months</span>
+                        <span class="crop-badge" style="background: var(--warning);">GOOD OPTION</span>
+                    </div>
+                </div>
+                <div class="crop-card">
+                    <p class="crop-name">Onion</p>
+                    <div class="crop-meta">
+                        <span>💰 ₹95K expected revenue</span>
+                        <span>⏱️ 5-6 months</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="card-header">
+                <div class="icon">📈</div>
+                <h2>7-Day Weather Forecast</h2>
+            </div>
+            <div class="dashboard-grid">
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                    <strong>Today</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">28°C | Sunny</p>
+                </div>
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">⛅</div>
+                    <strong>Tomorrow</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">26°C | Cloudy</p>
+                </div>
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">🌧️</div>
+                    <strong>Day 3</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">22°C | Rainy</p>
+                </div>
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">🌦️</div>
+                    <strong>Day 4</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">24°C | Partly Cloudy</p>
+                </div>
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                    <strong>Day 5</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">27°C | Sunny</p>
+                </div>
+                <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
+                    <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
+                    <strong>Day 6</strong>
+                    <p style="color: var(--muted); margin: 4px 0;">29°C | Sunny</p>
+                </div>
+            </div>
         </div>
     </main>
-
+    <div class="empty-state" id="createFarmCard" style="display: none;">
+        <div class="empty-card" >
+            <div class="card-header">
+                <div class="icon">➕</div>
+                <h3>Create Farm</h3>
+            </div>
+            <div class="farm-info">
+                <p style="color: var(--muted); margin-bottom: 16px;">
+                    Set up your farm details to get personalized recommendations.
+                </p>
+                <button class="btn btn-primary" style="width: 100%;" id="createFarm">
+                    Create Farm
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Loading state -->
+    <div id="loading-state" style="text-align: center; padding: 60px 20px;">
+        <h2>Loading your farm data...</h2>
+        <p style="color: var(--muted);">Fetching real-time information from the backend</p>
+    </div>
+    <!-- Create Farm modal -->
+    <div id="create-farm-modal"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 200;">
+        <div style="background: white; padding: 28px; border-radius: 12px; max-width: 520px; width: 92%;">
+            <div class="card-header" style="margin-bottom: 20px;">
+                <div class="icon">➕</div>
+                <h3 style="margin: 0;">Create Farm</h3>
+            </div>
+            <form id="create-farm-form" class="farm-info" autocomplete="off">
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Location</span>
+                    <input type="text" name="location" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;" />
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Farm Size</span>
+                    <input type="number" name="size" min="0" step="0.01" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;" />
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Size Unit</span>
+                    <select name="sizeUnit" data-dynamic-options="sizeUnit" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select a size unit</option>
+                    </select>
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Soil Type</span>
+                    <select name="soilType" data-dynamic-options="soilType" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select soil type</option>
+                    </select>
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Water Source</span>
+                    <select name="waterSource" data-dynamic-options="waterSource" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select water source</option>
+                    </select>
+                </label>
+                <div class="action-bar" style="justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" id="create-farm-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Edit Farm modal -->
+    <div id="edit-farm-modal"
+        style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 200;">
+        <div style="background: white; padding: 28px; border-radius: 12px; max-width: 520px; width: 92%;">
+            <div class="card-header" style="margin-bottom: 20px;">
+                <div class="icon">✏️</div>
+                <h3 style="margin: 0;">Edit Farm</h3>
+            </div>
+            <form id="edit-farm-form" class="farm-info" autocomplete="off">
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Location</span>
+                    <input type="text" name="location" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;" />
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Farm Size</span>
+                    <input type="number" name="size" min="0" step="0.01" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;" />
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Size Unit</span>
+                    <select name="sizeUnit" data-dynamic-options="sizeUnit" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select a size unit</option>
+                    </select>
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Soil Type</span>
+                    <select name="soilType" data-dynamic-options="soilType" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select soil type</option>
+                    </select>
+                </label>
+                <label class="info-item" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <span class="info-label">Water Source</span>
+                    <select name="waterSource" data-dynamic-options="waterSource" required
+                        style="width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #dfe6df;">
+                        <option value="" disabled selected>Select water source</option>
+                    </select>
+                </label>
+                <div class="action-bar" style="justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" id="edit-farm-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Error modal -->
     <div id="error-modal"
         style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 100;">
@@ -41,151 +290,6 @@
             <button class="btn btn-primary" onclick="location.reload()">Retry</button>
         </div>
     </div>
-
-    <div class="dashboard-grid">
-        <div class="card" id="farmDetails">
-            <div class="card-header">
-                <div class="icon">🌾</div>
-                <h3>Farm Profile</h3>
-            </div>
-            <div class="farm-info" id="farm-profile">
-                <div class="info-item">
-                    <span class="info-label">Location</span>
-                    <span class="info-value" id="location"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Farm Size</span>
-                    <span class="info-value" id="size"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Soil Type</span>
-                    <span class="info-value" id="soilType"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Water Access</span>
-                    <span class="info-value" id="waterSource"></span>
-                </div>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;" id="editFarm">
-                    Edit Farm
-                </button>
-            </div>
-        </div>
-
-
-
-        <div class="card">
-            <div class="card-header">
-                <div class="icon">🌤️</div>
-                <h3>Today's Weather</h3>
-            </div>
-            <div class="weather-main">
-                <div class="weather-icon">☀️</div>
-                <div>
-                    <div class="weather-temp" id="weatherTemp"></div>
-                    <div class="weather-desc" id="weatherDesc"></div>
-                </div>
-            </div>
-            <div class="weather-details">
-                <div class="weather-item">
-                    <div class="weather-item-label">Humidity</div>
-                    <div class="weather-item-value" id="humidity"></div>
-                </div>
-                <div class="weather-item">
-                    <div class="weather-item-label">Wind</div>
-                    <div class="weather-item-value" id="wind"></div>
-                </div>
-                <div class="weather-item">
-                    <div class="weather-item-label">Rain</div>
-                    <div class="weather-item-value" id="rain"></div>
-                </div>
-                <div class="weather-item">
-                    <div class="weather-item-label">UV Index</div>
-                    <div class="weather-item-value" id="uvindex"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="card-header">
-            <div class="icon">🌽</div>
-            <h2>Your Top Crop Recommendations</h2>
-        </div>
-        <div class="crops-list">
-            <div class="crop-card">
-                <p class="crop-name">Sugar Cane</p>
-                <div class="crop-meta">
-                    <span>💰 ₹2.8L expected revenue</span>
-                    <span>⏱️ 12-14 months</span>
-                    <span class="crop-badge">BEST FIT</span>
-                </div>
-            </div>
-            <div class="crop-card">
-                <p class="crop-name">Jowar (Sorghum)</p>
-                <div class="crop-meta">
-                    <span>💰 ₹1.2L expected revenue</span>
-                    <span>⏱️ 5-6 months</span>
-                    <span class="crop-badge" style="background: var(--info);">HIGH POTENTIAL</span>
-                </div>
-            </div>
-            <div class="crop-card">
-                <p class="crop-name">Cotton</p>
-                <div class="crop-meta">
-                    <span>💰 ₹1.5L expected revenue</span>
-                    <span>⏱️ 7-8 months</span>
-                    <span class="crop-badge" style="background: var(--warning);">GOOD OPTION</span>
-                </div>
-            </div>
-            <div class="crop-card">
-                <p class="crop-name">Onion</p>
-                <div class="crop-meta">
-                    <span>💰 ₹95K expected revenue</span>
-                    <span>⏱️ 5-6 months</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="section">
-        <div class="card-header">
-            <div class="icon">📈</div>
-            <h2>7-Day Weather Forecast</h2>
-        </div>
-        <div class="dashboard-grid">
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-                <strong>Today</strong>
-                <p style="color: var(--muted); margin: 4px 0;">28°C | Sunny</p>
-            </div>
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">⛅</div>
-                <strong>Tomorrow</strong>
-                <p style="color: var(--muted); margin: 4px 0;">26°C | Cloudy</p>
-            </div>
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">🌧️</div>
-                <strong>Day 3</strong>
-                <p style="color: var(--muted); margin: 4px 0;">22°C | Rainy</p>
-            </div>
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">🌦️</div>
-                <strong>Day 4</strong>
-                <p style="color: var(--muted); margin: 4px 0;">24°C | Partly Cloudy</p>
-            </div>
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-                <strong>Day 5</strong>
-                <p style="color: var(--muted); margin: 4px 0;">27°C | Sunny</p>
-            </div>
-            <div style="text-align: center; padding: 16px; background: #f9fbf9; border-radius: 12px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">☀️</div>
-                <strong>Day 6</strong>
-                <p style="color: var(--muted); margin: 4px 0;">29°C | Sunny</p>
-            </div>
-        </div>
-    </div>
-    </main>
 </body>
 
 </html>
