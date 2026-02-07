@@ -169,4 +169,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         )
 })
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken }
+const getUser = asyncHandler(async (req, res) => {
+    res
+        .status(200)
+        .json(
+            new APIResponse(
+                200,
+                req.user,
+                "User fetch succesful"
+            )
+        )
+})
+
+export { registerUser, loginUser, logoutUser, refreshAccessToken, getUser }
