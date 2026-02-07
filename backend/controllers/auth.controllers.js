@@ -65,7 +65,7 @@ const loginUser = asyncHandler(async function (req, res) {
             httpOnly: true,
             secure: false,
             sameSite: "lax",
-            path: "/api/auth/refresh"
+            path: "/api/auth/refresh-token"
         }
         const accesTokenOptions = {
             httpOnly: true,
