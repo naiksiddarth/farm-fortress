@@ -14,6 +14,9 @@ export const userInjector = async function (req, res, next) {
         req.user = user
         return next()
     } catch(error) {
+        if (error.name === "TokenExpiredError"){
+            throw new APIError(401, "Access token expired")
+        }
         throw new APIError(401, "Invalid JWT token")
     }
 }
