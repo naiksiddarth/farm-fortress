@@ -147,6 +147,26 @@ a {
   font-size: 1.1rem;
 }
 
+.empty-state {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(246, 248, 245, 0.8);
+  z-index: 5;
+  padding: 24px;
+}
+
+.empty-card {
+  width: min(520px, 92vw);
+  background: var(--card);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
 .icon {
   width: 24px;
   height: 24px;
